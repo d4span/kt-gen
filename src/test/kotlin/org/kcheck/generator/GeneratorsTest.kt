@@ -1,7 +1,10 @@
 package org.kcheck.generator
 
 import kotlin.random.Random
-import kotlin.test.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import kotlin.test.assertTrue
 
 class GeneratorsTest {
     @Test
@@ -88,10 +91,23 @@ class GeneratorsTest {
     }
 
     @Test
-    @Ignore
     fun generatorsAcceptMapperFunction() {
-        val mapper: (Int) -> Long = Int::toLong
+        val longGen: Generator<Long> = Gen.int().withMapper(Int::toLong)
+    }
 
-        //Gen.int(mapper)
+    @Test
+    fun generatorsUseMapperFunctions() {
+        val intGen = Gen.int()
+        val longGen = intGen.withMapper(Int::toLong)
+
+        assertEquals(intGen.next().toLong(), longGen.next())
+    }
+
+    @Test
+    fun generatorsUseMapperFunctions2() {
+//        val intGen = Gen.int()
+//        val stringGen = intGen.withMapper(Int::toString)
+//
+//        assertEquals(intGen.next().toString(), stringGen.next())
     }
 }

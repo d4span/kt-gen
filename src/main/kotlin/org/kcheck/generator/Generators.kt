@@ -12,6 +12,11 @@ typealias Gen = Generators
  */
 interface Generator<out T> : Iterator<T>
 
+fun Generator<Int>.withMapper(mapper: (Int) -> Long): Generator<Long> = object : Generator<Long> {
+    override fun hasNext() = true
+    override fun next(): Long = Random(0).nextInt().toLong()
+}
+
 /**
  * Provides various utility functions for working with generators.
  */
