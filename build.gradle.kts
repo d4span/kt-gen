@@ -1,23 +1,26 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("jvm") version "1.3.50"
+    kotlin("jvm") version "1.4.0"
 }
 
-group = "org.kcheck"
+group = "org.d4span.kt-gen"
 version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-
-    testImplementation(kotlin("test"))
-    testImplementation(kotlin("test-junit"))
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+kotlin {
+    val main = sourceSets["main"].apply { 
+        kotlin.srcDir("src/main/kotlin")
+    }
+    
+    sourceSets["test"].apply { 
+        kotlin.srcDir("src/test/kotlin")
+        
+        dependsOn(main)
+        
+        dependencies {
+            implementation(kotlin("test-junit"))
+        }
+     }
 }

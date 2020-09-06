@@ -1,10 +1,12 @@
-package org.kcheck.generator
+package org.d4span.ktgen
 
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
+
+import org.d4span.ktgen.Gen
 
 class GeneratorsTest {
     @Test

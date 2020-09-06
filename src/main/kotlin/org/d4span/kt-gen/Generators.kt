@@ -1,4 +1,4 @@
-package org.kcheck.generator
+package org.d4span.ktgen
 
 import kotlin.random.Random
 
